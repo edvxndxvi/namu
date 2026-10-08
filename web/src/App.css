@@ -1,10 +1,13 @@
 @import 'tailwindcss';
 
 .container {
-  max-width: 1200px;
-  margin: 0 auto;
+  @apply max-w-screen-xl mx-auto;
 }
 
 .sectionPadding {
-  padding: 32px 24px;
+  @apply py-8 px-6;
+}
+
+.contentFeed {
+  @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-8;
 }

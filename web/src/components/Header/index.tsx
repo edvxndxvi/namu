@@ -4,7 +4,7 @@ export default function Header() {
   return (
     <header className="border-b border-black">
       <nav className="container py-5 px-6 flex flex-row justify-between">
-        <Link to="/" className="text-xl font-bold hover:text-gray-700">
+        <Link to="/" className="text-lg font-bold hover:text-gray-700">
           Biblioteca de bem-estar
         </Link>
 
