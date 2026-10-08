@@ -1,0 +1,10 @@
+services:
+  api:
+    build: ./api
+    container_name: namu_contents_api
+    restart: unless-stopped
+    environment:
+      PORT: 3333
+      API_DELAY_MS: ${API_DELAY_MS:-300-900}
+    ports:
+      - "${API_PORT:-3333}:3333"
