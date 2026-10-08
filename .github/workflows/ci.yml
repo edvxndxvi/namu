@@ -5,6 +5,9 @@ on: push
 jobs: 
   web: 
     runs-on: ubuntu-latest
+    defaults:
+      run: 
+        working-directory: web
     steps:
       - uses: actions/checkout@v4
       - name: Set up Node.js
@@ -12,8 +15,8 @@ jobs:
         with:
           node-version: '22'
           cache: 'npm'
-      - run: npm install
+          cache-dependency-path: web/package-lock.json
+      - run: npm ci
       - run: npm run lint
       - run: npm run format:check
-      - run: npm run format
       - run: npx tsc -b
