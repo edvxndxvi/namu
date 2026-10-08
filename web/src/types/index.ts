@@ -1,6 +1,6 @@
 export type ContentType = 'video' | 'article' | 'article'
 
-export interface Categoria {
+export interface Category {
   slug: string
   name: string
 }

@@ -5,16 +5,19 @@ import type { PaginatedResponse, Content } from '../../types'
 import FeedItem from './FeedItem'
 import SkeletonFeedItem from './SkeletonFeedItem'
 
-export default function Feed() {
+interface FeedProps {
+  categoryFilter: string
+}
+export default function Feed({ categoryFilter }: FeedProps) {
   const { data, request, loading, error } = useFetch<PaginatedResponse<Content>>()
 
   useEffect(() => {
     async function fetchContents() {
-      const { url, options } = GET_CONTENTS()
+      const { url, options } = GET_CONTENTS({ category: categoryFilter })
       await request(url, options)
     }
     fetchContents()
-  }, [request])
+  }, [request, categoryFilter])
 
   if (loading)
     return (
