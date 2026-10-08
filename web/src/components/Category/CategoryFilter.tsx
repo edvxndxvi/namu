@@ -23,7 +23,7 @@ export default function CategoryFilter({ selected, onSelect }: CategoryFilterPro
 
   if (loading)
     return (
-      <ul className="flex flex-wrap gap-4 mt-8">
+      <ul className="flex flex-wrap gap-4">
         {[...Array(6)].map((_, index) => (
           <SkeletonCategoryButton key={index} />
         ))}
@@ -32,7 +32,7 @@ export default function CategoryFilter({ selected, onSelect }: CategoryFilterPro
 
   if (data)
     return (
-      <ul className="flex flex-wrap gap-4 mt-8">
+      <ul className="flex flex-wrap gap-4">
         <CategoryButton
           category={{ slug: '', name: 'Todas' }}
           isSelected={selected === ''}

@@ -5,7 +5,7 @@ export default function Home() {
   const [selectedCategory, setSelectedCategory] = useState('')
 
   return (
-    <section className="container sectionPadding">
+    <section className="container section">
       <h1 className="text-2xl font-bold">Conteúdos</h1>
       <CategoryFilter selected={selectedCategory} onSelect={setSelectedCategory} />
       <Feed categoryFilter={selectedCategory} />

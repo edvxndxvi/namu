@@ -1,9 +1,11 @@
 import { useEffect } from 'react'
 import useFetch from '../../hooks/useFetch'
+import ErrorState from '../State/ErrorState'
 import { GET_CONTENTS } from '../../service/api'
 import type { PaginatedResponse, Content } from '../../types'
 import FeedItem from './FeedItem'
 import SkeletonFeedItem from './SkeletonFeedItem'
+import EmptyState from '../State/EmptyState'
 
 interface FeedProps {
   categoryFilter: string
@@ -27,9 +29,9 @@ export default function Feed({ categoryFilter }: FeedProps) {
         ))}
       </ul>
     )
-  if (error) return <p>Erro</p>
+  if (error) return <ErrorState message="Erro ao carregar os conteúdos." />
 
-  if (data)
+  if (data && data.data.length > 0)
     return (
       <ul className="contentFeed">
         {data.data.map((content: Content) => (
@@ -37,4 +39,6 @@ export default function Feed({ categoryFilter }: FeedProps) {
         ))}
       </ul>
     )
+
+  if (data && data.data.length === 0) return <EmptyState />
 }
