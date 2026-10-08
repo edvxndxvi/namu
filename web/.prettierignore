@@ -1,0 +1,12 @@
+node_modules/
+dist/
+dist-ssr/
+*.local
+
+*.d.ts
+
+coverage/
+
+package-lock.json
+
+public/
