@@ -6,8 +6,9 @@ import EmptyState from '../State/EmptyState'
 interface FeedProps {
   contents: Content[]
   loading: boolean
+  favoritesList?: boolean
 }
-export default function Feed({ contents, loading }: FeedProps) {
+export default function Feed({ contents, loading, favoritesList }: FeedProps) {
   if (loading)
     return (
       <ul className="contentFeed">
@@ -26,5 +27,5 @@ export default function Feed({ contents, loading }: FeedProps) {
       </ul>
     )
 
-  if (contents && contents.length === 0) return <EmptyState />
+  if (contents && contents.length === 0) return <EmptyState favorite={favoritesList} />
 }
