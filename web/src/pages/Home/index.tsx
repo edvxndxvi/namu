@@ -22,7 +22,6 @@ export default function Home() {
     reload: reloadContents,
     error: contentsError,
   } = useContent({ categoryFilter: selectedCategory, page })
-  const emptyPage = contents?.data?.length === 0
 
   const hasError = categoriesError || contentsError
 
@@ -50,11 +49,9 @@ export default function Home() {
             loading={categoriesLoading}
           />
           <Feed contents={contents?.data ?? []} loading={contentsLoading} />
-          <Pagination
-            currentPage={emptyPage ? 0 : page}
-            totalPages={contents?.totalPages ?? 1}
-            setPage={setPage}
-          />
+          {contents && contents.totalPages > 1 && (
+            <Pagination currentPage={page} totalPages={contents.totalPages} setPage={setPage} />
+          )}
         </>
       )}
     </section>

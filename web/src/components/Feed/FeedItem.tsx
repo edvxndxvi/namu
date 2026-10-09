@@ -11,7 +11,7 @@ export default function FeedItem({ content }: FeedItemProps) {
     <li>
       <Link
         to={`/content/${content.id}`}
-        className="flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white transition duration-200 hover:-translate-y-0.5 cursor-pointer"
+        className="h-full flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white transition duration-200 hover:-translate-y-0.5 cursor-pointer"
       >
         <div className="relative aspect-video overflow-hidden bg-stone-300">
           {content.thumbnailUrl && (
