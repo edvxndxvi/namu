@@ -1,13 +1,17 @@
 @import 'tailwindcss';
 
+.App {
+  @apply flex flex-col min-h-screen;
+}
+
 .container {
   @apply max-w-screen-xl mx-auto;
 }
 
-.sectionPadding {
-  @apply py-8 px-6;
+.section {
+  @apply py-8 px-6 flex flex-col gap-8 flex-1;
 }
 
 .contentFeed {
-  @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 mt-8;
+  @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
 }
