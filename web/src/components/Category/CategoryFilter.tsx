@@ -1,26 +1,20 @@
-import { useEffect } from 'react'
-import useFetch from '../../hooks/useFetch'
-import { GET_CATEGORIES } from '../../service/api'
-import type { Category, ListResponse } from '../../types'
+import type { Category } from '../../types'
 import CategoryButton from './CategoryButton'
 import SkeletonCategoryButton from './SkeletonCategoryButton'
 
 interface CategoryFilterProps {
   selected: string
   onSelect: (slug: string) => void
+  loading: boolean
+  categories: Category[] | undefined
 }
 
-export default function CategoryFilter({ selected, onSelect }: CategoryFilterProps) {
-  const { data, loading, request } = useFetch<ListResponse<Category>>()
-
-  useEffect(() => {
-    async function fetchCategories() {
-      const { url, options } = GET_CATEGORIES()
-      await request(url, options)
-    }
-    fetchCategories()
-  }, [request])
-
+export default function CategoryFilter({
+  selected,
+  onSelect,
+  loading,
+  categories,
+}: CategoryFilterProps) {
   if (loading)
     return (
       <ul className="flex flex-wrap gap-4">
@@ -30,7 +24,7 @@ export default function CategoryFilter({ selected, onSelect }: CategoryFilterPro
       </ul>
     )
 
-  if (data)
+  if (categories)
     return (
       <ul className="flex flex-wrap gap-4">
         <CategoryButton
@@ -38,7 +32,7 @@ export default function CategoryFilter({ selected, onSelect }: CategoryFilterPro
           isSelected={selected === ''}
           onClick={() => onSelect('')}
         />
-        {data.data.map((category) => (
+        {categories.map((category) => (
           <CategoryButton
             key={category.slug}
             category={category}

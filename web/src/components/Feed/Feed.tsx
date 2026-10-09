@@ -1,26 +1,13 @@
-import { useEffect } from 'react'
-import useFetch from '../../hooks/useFetch'
-import ErrorState from '../State/ErrorState'
-import { GET_CONTENTS } from '../../service/api'
-import type { PaginatedResponse, Content } from '../../types'
+import type { Content } from '../../types'
 import FeedItem from './FeedItem'
 import SkeletonFeedItem from './SkeletonFeedItem'
 import EmptyState from '../State/EmptyState'
 
 interface FeedProps {
-  categoryFilter: string
+  contents: Content[]
+  loading: boolean
 }
-export default function Feed({ categoryFilter }: FeedProps) {
-  const { data, request, loading, error } = useFetch<PaginatedResponse<Content>>()
-
-  useEffect(() => {
-    async function fetchContents() {
-      const { url, options } = GET_CONTENTS({ category: categoryFilter })
-      await request(url, options)
-    }
-    fetchContents()
-  }, [request, categoryFilter])
-
+export default function Feed({ contents, loading }: FeedProps) {
   if (loading)
     return (
       <ul className="contentFeed">
@@ -29,16 +16,15 @@ export default function Feed({ categoryFilter }: FeedProps) {
         ))}
       </ul>
     )
-  if (error) return <ErrorState message="Erro ao carregar os conteúdos." />
 
-  if (data && data.data.length > 0)
+  if (contents && contents.length > 0)
     return (
       <ul className="contentFeed">
-        {data.data.map((content: Content) => (
+        {contents.map((content: Content) => (
           <FeedItem key={content.id} content={content} />
         ))}
       </ul>
     )
 
-  if (data && data.data.length === 0) return <EmptyState />
+  if (contents && contents.length === 0) return <EmptyState />
 }
