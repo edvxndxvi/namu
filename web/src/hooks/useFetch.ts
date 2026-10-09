@@ -18,8 +18,10 @@ export default function useFetch<T>() {
       }
 
       setData(json)
+      return true
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Erro inesperado')
+      return false
     } finally {
       setLoading(false)
     }
