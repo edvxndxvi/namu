@@ -35,7 +35,7 @@ export function GET_FAVORITES() {
   }
 }
 
-export function POST_FAVORITE(id: number) {
+export function POST_FAVORITE(contentId: number) {
   return {
     url: `${API_URL}/favorites`,
     options: {
@@ -43,8 +43,8 @@ export function POST_FAVORITE(id: number) {
       headers: {
         'Content-Type': 'application/json',
       },
+      body: JSON.stringify({ contentId }),
     },
-    body: JSON.stringify({ id }),
   }
 }
 
