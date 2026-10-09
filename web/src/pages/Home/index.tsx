@@ -4,24 +4,22 @@ import Feed from '../../components/Feed/Feed'
 import { useCategory } from '../../hooks/useCategory'
 import { useContent } from '../../hooks/useContent'
 import ErrorState from '../../components/State/ErrorState'
+import Pagination from '../../components/Pagination/Pagination'
 
 export default function Home() {
-  const {
-    data: categories,
-    loading: categoriesLoading,
-    reload: reloadCategories,
-    error: categoriesError,
-  } = useCategory()
+  const { data: categories, loading: categoriesLoading, reload: reloadCategories, error: categoriesError  } = useCategory()
   const [selectedCategory, setSelectedCategory] = useState('')
-
-  const {
-    data: contents,
-    loading: contentsLoading,
-    reload: reloadContents,
-    error: contentsError,
-  } = useContent({ categoryFilter: selectedCategory })
+  const [page, setPage] = useState(1)
+  
+  const { data: contents, loading: contentsLoading, reload: reloadContents, error: contentsError } = useContent({ categoryFilter: selectedCategory, page })
+  const emptyPage = contents?.data?.length === 0;
 
   const hasError = categoriesError || contentsError
+
+  function handleCategory(category: string) {
+    setSelectedCategory(category)
+    setPage(1)
+  }
 
   function handleRetry() {
     reloadCategories()
@@ -37,11 +35,12 @@ export default function Home() {
         <>
           <CategoryFilter
             selected={selectedCategory}
-            onSelect={setSelectedCategory}
+            onSelect={handleCategory}
             categories={categories?.data ?? []}
             loading={categoriesLoading}
           />
           <Feed contents={contents?.data ?? []} loading={contentsLoading} />
+          <Pagination currentPage={emptyPage ? 0 : page} totalPages={contents?.totalPages ?? 1} setPage={setPage}/>
         </>
       )}
     </section>

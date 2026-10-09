@@ -5,15 +5,16 @@ import { GET_CONTENTS } from '../service/api'
 
 interface useContentProps {
   categoryFilter: string
+  page: number
 }
 
-export function useContent({ categoryFilter }: useContentProps) {
+export function useContent({ categoryFilter, page }: useContentProps) {
   const { data, request, loading, error } = useFetch<PaginatedResponse<Content>>()
 
   const load = useCallback(async () => {
-    const { url, options } = GET_CONTENTS({ category: categoryFilter })
+    const { url, options } = GET_CONTENTS({ category: categoryFilter, page }) 
     await request(url, options)
-  }, [request, categoryFilter])
+  }, [request, categoryFilter, page])
 
   useEffect(() => {
     load()

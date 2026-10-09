@@ -8,9 +8,9 @@ export function GET_CATEGORIES() {
     },
   }
 }
-export function GET_CONTENTS({ category }: { category: string }) {
+export function GET_CONTENTS({ category, page }: { category: string, page: number }) {
   return {
-    url: `${API_URL}/contents?category=${category}`,
+    url: `${API_URL}/contents?category=${category}&page=${page}`,
     options: {
       method: 'GET',
     },
