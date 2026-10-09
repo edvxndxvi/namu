@@ -1,5 +1,6 @@
 import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom'
+import { FavoriteProvider } from './context/favoriteContext'
 import Home from './pages/Home'
 import Header from './components/Header'
 import Favorites from './pages/Favorites'
@@ -10,15 +11,17 @@ export default function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
-        <main className="flex-1 flex flex-col">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="favorites" element={<Favorites />} />
-            <Route path="content/:id" element={<Content />} />
-            <Route path="*" element={<NotFound />} />
-          </Routes>
-        </main>
+        <FavoriteProvider>
+          <Header />
+          <main className="flex-1 flex flex-col">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="favorites" element={<Favorites />} />
+              <Route path="content/:id" element={<Content />} />
+              <Route path="*" element={<NotFound />} />
+            </Routes>
+          </main>
+        </FavoriteProvider>
       </BrowserRouter>
     </div>
   )
