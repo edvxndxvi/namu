@@ -11,10 +11,11 @@ export default function useFetch<T>() {
       setLoading(true)
 
       const response = await fetch(url, options)
-      const json = await response.json()
+      const text = await response.text()
+      const json = text ? JSON.parse(text) : null
 
       if (!response.ok) {
-        throw new Error(json.error)
+        throw new Error(json?.error || 'Erro na requisição')
       }
 
       setData(json)
