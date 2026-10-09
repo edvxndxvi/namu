@@ -12,7 +12,7 @@ export function useContent({ categoryFilter, page }: useContentProps) {
   const { data, request, loading, error } = useFetch<PaginatedResponse<Content>>()
 
   const load = useCallback(async () => {
-    const { url, options } = GET_CONTENTS({ category: categoryFilter, page }) 
+    const { url, options } = GET_CONTENTS({ category: categoryFilter, page })
     await request(url, options)
   }, [request, categoryFilter, page])
 

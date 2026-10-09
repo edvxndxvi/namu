@@ -7,12 +7,22 @@ import ErrorState from '../../components/State/ErrorState'
 import Pagination from '../../components/Pagination/Pagination'
 
 export default function Home() {
-  const { data: categories, loading: categoriesLoading, reload: reloadCategories, error: categoriesError  } = useCategory()
+  const {
+    data: categories,
+    loading: categoriesLoading,
+    reload: reloadCategories,
+    error: categoriesError,
+  } = useCategory()
   const [selectedCategory, setSelectedCategory] = useState('')
   const [page, setPage] = useState(1)
-  
-  const { data: contents, loading: contentsLoading, reload: reloadContents, error: contentsError } = useContent({ categoryFilter: selectedCategory, page })
-  const emptyPage = contents?.data?.length === 0;
+
+  const {
+    data: contents,
+    loading: contentsLoading,
+    reload: reloadContents,
+    error: contentsError,
+  } = useContent({ categoryFilter: selectedCategory, page })
+  const emptyPage = contents?.data?.length === 0
 
   const hasError = categoriesError || contentsError
 
@@ -40,7 +50,11 @@ export default function Home() {
             loading={categoriesLoading}
           />
           <Feed contents={contents?.data ?? []} loading={contentsLoading} />
-          <Pagination currentPage={emptyPage ? 0 : page} totalPages={contents?.totalPages ?? 1} setPage={setPage}/>
+          <Pagination
+            currentPage={emptyPage ? 0 : page}
+            totalPages={contents?.totalPages ?? 1}
+            setPage={setPage}
+          />
         </>
       )}
     </section>
