@@ -1,7 +1,8 @@
-import { FlatList, View, StyleSheet } from "react-native"
-import { Content } from "../../types"
-import FeedItem from "./FeedItem"
-import SkeletonFeedItem from "./SkeletonFeedItem"
+import { FlatList, View, StyleSheet } from 'react-native'
+import { Content } from '../../types'
+import FeedItem from './FeedItem'
+import SkeletonFeedItem from './SkeletonFeedItem'
+import EmptyState from '../State/EmptyState'
 
 interface FeedProps {
   contents: Content[]
@@ -15,22 +16,22 @@ function Separator() {
 }
 
 export default function Feed({ contents, loading, favoritesList, onRefresh }: FeedProps) {
-    if (loading)
-        return (
-        <View>
-            {[...Array(8)].map((_, index) => (
-                <SkeletonFeedItem key={index} />
-            ))}
-        </View>
-        )
+  if (loading)
+    return (
+      <View>
+        {[...Array(8)].map((_, index) => (
+          <SkeletonFeedItem key={index} />
+        ))}
+      </View>
+    )
 
   return (
-     <FlatList
+    <FlatList
       data={contents}
       keyExtractor={(item) => String(item.id)}
       renderItem={({ item }) => <FeedItem content={item} />}
       ItemSeparatorComponent={Separator}
-    //   ListEmptyComponent={<EmptyState favorite={favoritesList} />}
+      ListEmptyComponent={<EmptyState favorite={favoritesList} />}
       contentContainerStyle={contents.length === 0 && styles.emptyContainer}
       onRefresh={onRefresh}
       refreshing={loading}

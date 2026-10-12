@@ -1,14 +1,12 @@
 import type { ReactNode } from 'react'
-import { StyleSheet} from 'react-native'
+import { StyleSheet } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 
 interface ScreenContainerProps {
   children: ReactNode
 }
 
-export default function ScreenContainer({
-  children,
-}: ScreenContainerProps) {
+export default function ScreenContainer({ children }: ScreenContainerProps) {
   return (
     <SafeAreaView edges={['top', 'left', 'right']} style={styles.container}>
       {children}

@@ -1,10 +1,8 @@
-import { View, StyleSheet } from "react-native";
+import { View, StyleSheet } from 'react-native'
 
 export default function SkeletonFeedItem() {
   return (
-   <View
-      style={styles.container}
-    >
+    <View style={styles.container}>
       <View style={styles.thumbnail} />
 
       <View style={styles.info}>
@@ -15,7 +13,6 @@ export default function SkeletonFeedItem() {
     </View>
   )
 }
-
 
 const styles = StyleSheet.create({
   container: {

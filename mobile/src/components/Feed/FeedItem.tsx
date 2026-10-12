@@ -10,10 +10,7 @@ export default function FeedItem({ content }: FeedItemProps) {
   const duration = formatDuration(content.durationSeconds)
 
   return (
-    <TouchableOpacity
-      onPress={() => {}}
-      style={styles.container}
-    >
+    <TouchableOpacity onPress={() => {}} style={styles.container}>
       {content.thumbnailUrl ? (
         <Image source={{ uri: content.thumbnailUrl }} style={styles.thumbnail} />
       ) : (
