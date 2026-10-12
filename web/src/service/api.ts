@@ -8,7 +8,15 @@ export function GET_CATEGORIES() {
     },
   }
 }
-export function GET_CONTENTS({ category, page, search }: { category: string; page: number; search: string }) {
+export function GET_CONTENTS({
+  category,
+  page,
+  search,
+}: {
+  category: string
+  page: number
+  search: string
+}) {
   return {
     url: `${API_URL}/contents?category=${category}&page=${page}&search=${search}`,
     options: {

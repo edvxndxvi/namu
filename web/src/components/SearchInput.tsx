@@ -1,5 +1,5 @@
 interface SearchInputProps {
-label: string
+  label: string
   value: string
   onChange: (value: string) => void
 }
@@ -7,7 +7,9 @@ label: string
 export default function SearchInput({ label, value, onChange }: SearchInputProps) {
   return (
     <div className="flex flex-col gap-2">
-      <label htmlFor="search-input" className="text-sm font-medium text-stone-700">{label}</label>
+      <label htmlFor="search-input" className="text-sm font-medium text-stone-700">
+        {label}
+      </label>
       <input
         id="search-input"
         type="text"

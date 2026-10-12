@@ -30,9 +30,7 @@ export default function Content() {
         <SkeletonContentDetails />
       ) : data ? (
         <>
-          <ContentDetails
-            content={data}
-          />
+          <ContentDetails content={data} />
         </>
       ) : (
         error && <ErrorState message={error} />
