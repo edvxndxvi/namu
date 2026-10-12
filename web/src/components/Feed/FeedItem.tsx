@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import type { Content } from '../../types'
 import formatDuration from '../../utils/formatDuration'
+import FavoriteToggle from '../Favorite/FavoriteToggle'
 
 interface FeedItemProps {
   content: Content
@@ -8,7 +9,7 @@ interface FeedItemProps {
 
 export default function FeedItem({ content }: FeedItemProps) {
   return (
-    <li>
+    <li className="relative">
       <Link
         to={`/content/${content.id}`}
         className="h-full flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white transition duration-200 hover:-translate-y-0.5 cursor-pointer"
@@ -37,6 +38,9 @@ export default function FeedItem({ content }: FeedItemProps) {
           </p>
         </div>
       </Link>
+      <div className="absolute top-3 right-3 z-10">
+        <FavoriteToggle contentId={content.id} />
+      </div>
     </li>
   )
 }

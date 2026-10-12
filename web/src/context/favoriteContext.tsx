@@ -20,10 +20,7 @@ interface FavoriteProviderProps {
 
 export function FavoriteProvider({ children }: FavoriteProviderProps) {
   const { data, request, loading, error } = useFetch<ListResponse<Content>>()
-  const {
-    request: requestToggleFavorite, // loading: loadingToggleFavorite,
-    error: errorToggleFavorite,
-  } = useFetch()
+  const { request: requestToggleFavorite, error: errorToggleFavorite } = useFetch()
 
   const load = useCallback(async () => {
     const { url, options } = GET_FAVORITES()
@@ -43,7 +40,8 @@ export function FavoriteProvider({ children }: FavoriteProviderProps) {
     const { url, options } = remover ? DELETE_FAVORITE(contentId) : POST_FAVORITE(contentId)
 
     const ok = await requestToggleFavorite(url, options)
-    if (ok) await load()
+    if (!ok) alert('Erro ao atualizar favorito')
+    await load()
   }
 
   return (

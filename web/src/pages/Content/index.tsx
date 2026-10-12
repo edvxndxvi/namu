@@ -6,12 +6,10 @@ import { GET_CONTENT_BY_ID } from '../../service/api'
 import type { ContentDetail } from '../../types'
 import SkeletonContentDetails from '../../components/Content/SkeletonContentDetails'
 import ErrorState from '../../components/State/ErrorState'
-import { useFavorite } from '../../hooks/useFavorite'
 
 export default function Content() {
   const { id } = useParams()
   const { data, loading, error, request } = useFetch<ContentDetail>()
-  const { toggleFavorite, isFavorite, error: errorFavorite } = useFavorite()
 
   useEffect(() => {
     async function fetchContent() {
@@ -34,10 +32,7 @@ export default function Content() {
         <>
           <ContentDetails
             content={data}
-            isFavorite={isFavorite(data.id)}
-            onToggleFavorite={() => toggleFavorite(data.id)}
           />
-          <p>{errorFavorite}</p>
         </>
       ) : (
         error && <ErrorState message={error} />
