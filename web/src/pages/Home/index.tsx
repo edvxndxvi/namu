@@ -3,8 +3,10 @@ import CategoryFilter from '../../components/Category/CategoryFilter'
 import Feed from '../../components/Feed/Feed'
 import { useCategory } from '../../hooks/useCategory'
 import { useContent } from '../../hooks/useContent'
+import useDebounce from '../../hooks/useDebounce'
 import ErrorState from '../../components/State/ErrorState'
 import Pagination from '../../components/Pagination/Pagination'
+import SearchInput from '../../components/SearchInput'
 
 export default function Home() {
   const {
@@ -15,13 +17,15 @@ export default function Home() {
   } = useCategory()
   const [selectedCategory, setSelectedCategory] = useState('')
   const [page, setPage] = useState(1)
+  const [searchQuery, setSearchQuery] = useState('')
+  const debouncedSearchQuery = useDebounce(searchQuery, 300)
 
   const {
     data: contents,
     loading: contentsLoading,
     reload: reloadContents,
     error: contentsError,
-  } = useContent({ categoryFilter: selectedCategory, page })
+  } = useContent({ categoryFilter: selectedCategory, page, search: debouncedSearchQuery })
 
   const hasError = categoriesError || contentsError
 
@@ -42,6 +46,7 @@ export default function Home() {
         <ErrorState message="Ocorreu um erro ao carregar os dados." retry={handleRetry} />
       ) : (
         <>
+          <SearchInput label="Busca por título" value={searchQuery} onChange={setSearchQuery} />
           <CategoryFilter
             selected={selectedCategory}
             onSelect={handleCategory}

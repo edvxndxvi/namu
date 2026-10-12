@@ -9,10 +9,10 @@ interface FeedItemProps {
 
 export default function FeedItem({ content }: FeedItemProps) {
   return (
-    <li className="relative">
+    <li className="relative transition duration-200 hover:-translate-y-0.5">
       <Link
         to={`/content/${content.id}`}
-        className="h-full flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white transition duration-200 hover:-translate-y-0.5 cursor-pointer"
+        className="h-full flex flex-col overflow-hidden rounded-2xl border border-stone-200 bg-white cursor-pointer"
       >
         <div className="relative aspect-video overflow-hidden bg-stone-300">
           {content.thumbnailUrl && (
