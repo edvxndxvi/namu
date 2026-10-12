@@ -1,4 +1,4 @@
-export type ContentType = 'video' | 'article' | 'article'
+export type ContentType = 'video' | 'audio' | 'article'
 
 export interface Category {
   slug: string
