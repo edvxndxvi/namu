@@ -14,7 +14,10 @@ export default function FeedItem({ content }: FeedItemProps) {
   const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
 
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('ContentDetail', { contentId: content.id })} style={styles.container}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('ContentDetail', { contentId: content.id })}
+      style={styles.container}
+    >
       {content.thumbnailUrl ? (
         <Image source={{ uri: content.thumbnailUrl }} style={styles.thumbnail} />
       ) : (

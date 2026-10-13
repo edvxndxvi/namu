@@ -1,6 +1,7 @@
 import { Image, StyleSheet, Text, View } from 'react-native'
 import type { ContentDetail } from '../../types'
 import formatDuration from '../../utils/formatDuration'
+import FavoriteToggle from '../Favorite/FavoriteToggle'
 
 interface ContentDetailsProps {
   content: ContentDetail
@@ -31,10 +32,9 @@ export default function ContentDetails({ content }: ContentDetailsProps) {
       <View style={styles.header}>
         <View style={styles.headerRow}>
           <Text style={styles.category}>{content.category}</Text>
+          <FavoriteToggle contentId={content.id} />
         </View>
-        <Text style={styles.title} >
-          {content.title}
-        </Text>
+        <Text style={styles.title}>{content.title}</Text>
       </View>
 
       <View style={styles.details}>

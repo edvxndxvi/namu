@@ -1,9 +1,9 @@
-import { View, StyleSheet } from "react-native"
+import { View, StyleSheet } from 'react-native'
 
 export default function SkeletonContentDetails() {
   return (
     <View style={styles.container}>
-        <View style={styles.image} />
+      <View style={styles.image} />
 
       <View style={styles.header}>
         <View style={styles.headerRow}>
