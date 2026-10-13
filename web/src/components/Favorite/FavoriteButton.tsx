@@ -22,7 +22,11 @@ export default function FavoriteButton({
       className="cursor-pointer bg-white border border-stone-200 py-1.5 px-3 rounded-full hover:bg-stone-100 disabled:cursor-not-allowed disabled:opacity-50"
       disabled={isPending}
     >
-      <img src={icon} alt={isFavorito ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'} className="h-5 w-5" />
+      <img
+        src={icon}
+        alt={isFavorito ? 'Remover dos Favoritos' : 'Adicionar aos Favoritos'}
+        className="h-5 w-5"
+      />
     </button>
   )
 }

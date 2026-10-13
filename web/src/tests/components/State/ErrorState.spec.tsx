@@ -19,7 +19,7 @@ describe('ErrorState', () => {
 
     const button = screen.getByRole('button', { name: 'Tentar de novo' })
     await user.click(button)
-    
+
     expect(retry).toHaveBeenCalled()
   })
 })
