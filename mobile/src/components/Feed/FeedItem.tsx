@@ -1,6 +1,9 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import type { Content } from '../../types'
 import formatDuration from '../../utils/formatDuration'
+import { useNavigation } from '@react-navigation/native'
+import type { NativeStackNavigationProp } from '@react-navigation/native-stack'
+import type { RootStackParamList } from '../../navigation/RootNavigator'
 
 interface FeedItemProps {
   content: Content
@@ -8,9 +11,10 @@ interface FeedItemProps {
 
 export default function FeedItem({ content }: FeedItemProps) {
   const duration = formatDuration(content.durationSeconds)
+  const navigation = useNavigation<NativeStackNavigationProp<RootStackParamList>>()
 
   return (
-    <TouchableOpacity onPress={() => {}} style={styles.container}>
+    <TouchableOpacity onPress={() => navigation.navigate('ContentDetail', { contentId: content.id })} style={styles.container}>
       {content.thumbnailUrl ? (
         <Image source={{ uri: content.thumbnailUrl }} style={styles.thumbnail} />
       ) : (

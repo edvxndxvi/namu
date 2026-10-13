@@ -9,7 +9,7 @@ export default function FavoritesScreen() {
 
   return (
     <ScreenContainer>
-      <Text style={styles.title}>Conteúdos</Text>
+      <Text style={styles.title}>Favoritos</Text>
       {favoritos ? (
         <Feed contents={favoritos} loading={loading} onRefresh={load} favoritesList={true} />
       ) : (
