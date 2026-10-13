@@ -4,7 +4,7 @@ import ContentDetailScreen from '../screens/ContentDetailScreen'
 
 export type RootStackParamList = {
   Tabs: undefined
-  ContentDetail: { contentId: string }
+  ContentDetail: { contentId: number }
 }
 
 const Stack = createNativeStackNavigator<RootStackParamList>()

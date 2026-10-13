@@ -12,7 +12,7 @@ import { useNavigation } from '@react-navigation/native'
 export default function ContentDetailScreen({
   route,
 }: {
-  route: { params: { contentId: string } }
+  route: { params: { contentId: number } }
 }) {
   const { contentId: id } = route.params
   const { data, loading, error, request } = useFetch<ContentDetail>()
